@@ -126,23 +126,27 @@ Title: `[Task] Enable and debug the interactions endpoint`
 ### 1.9. Trace the bug
 
 1. [Open the file](../../appendix/vs-code.md#open-the-file):
-   [`src/app/models/interaction.py`](../../../src/app/models/interaction.py).
-2. Look at the `InteractionModel` class (the response schema):
+   [`src/app/routers/interactions.py`](../../../src/app/routers/interactions.py).
+2. Look at the endpoint definition:
 
    ```python
-   class InteractionModel(SQLModel):
-       id: int
-       learner_id: int
-       item_id: int
-       kind: str
-       timestamp: datetime
+   @router.get("/", response_model=list[InteractionModel])
+   async def get_interactions(...)
    ```
 
-3. The response schema has a field called `timestamp`.
-4. [Recall](#14-examine-the-database-using-pgadmin) that
+   **Note:** The path `"/"` is local to this router file.
+
+   `FastAPI` combines it with the `prefix="/interactions"` set in [`src/app/main.py`](../../../src/app/main.py) to produce the full path `/interactions`.
+
+   The `response_model` parameter tells `FastAPI` which schema to use when serializing the response. It is `InteractionModel`.
+3. [Open the file](../../appendix/vs-code.md#open-the-file):
+   [`src/app/models/interaction.py`](../../../src/app/models/interaction.py).
+4. Look at the `InteractionModel` class (the response schema).
+5. The response schema has a field called `timestamp`.
+6. [Recall](#14-examine-the-database-using-pgadmin) that
    the database table `interaction_logs` has a column called `created_at`, not `timestamp`.
-5. The `InteractionLog` class (the database model) has `created_at`, but the `InteractionModel` class (the response schema) has `timestamp`.
-6. This mismatch causes the error.
+7. The `InteractionLog` class (the database model) has `created_at`, but the `InteractionModel` class (the response schema) has `timestamp`.
+8. This mismatch causes the error.
 
 ### 1.10. Fix Bug 1: rename `timestamp` to `created_at`
 

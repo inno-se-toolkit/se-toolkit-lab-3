@@ -20,7 +20,12 @@
 
 ## What is a VM
 
-<!-- TODO -->
+A virtual machine (`VM`) is a software-emulated computer that runs on a physical host machine, with its own [operating system](./operating-system.md) and isolated environment.
+In this lab, you use a `VM` provided by the university to deploy and run the application remotely over [SSH](./ssh.md).
+
+Docs:
+
+- [What is a virtual machine?](https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a-virtual-machine)
 
 ## Your VM
 
@@ -99,7 +104,7 @@ Complete these steps to create a VM:
        1. [Find the `SSH` key files](./ssh.md#find-the-ssh-key-files).
        2. Copy the **full content** of the public key file.
        3. Paste the content into the input field.
-10. Note that the user's name on the VM is `root`.
+10. Note that the user's name on the VM is [`root`](./linux.md#the-root-user).
 11. Click `->` to go to the page 3.
 12. Go to `NETWORK ADAPTER 1`.
 13. Click `Not Connected`.
@@ -125,7 +130,7 @@ Complete these steps to create a VM:
 2. Go to the `quick glance` sidebar (on the right).
 3. Go to `IP Address(es)`.
 4. You should see there `StudentsCourses01 - 10.93.24.98`.
-5. The `10.93.24.98` string is the `IP address` of the VM in a university network.
+5. The `10.93.24.98` string is the [`IP address`](./computer-networks.md#ip-address) of the VM in a university network.
 6. We'll refer to this string as `<your-vm-ip-address>`.
 
 ## Connect to the VM
@@ -133,11 +138,11 @@ Complete these steps to create a VM:
 1. [Add host to the `SSH` config](./ssh.md#add-the-host-to-the-ssh-config).
 2. Disable `VPN`.
 3. Connect your computer to the `Wi-Fi` network `UniversityStudent`.
-4. Open `VS Code`.
+4. Open [`VS Code`](./vs-code.md).
 5. [Connect to the VM](./ssh.md#connect-to-the-vm).
 6. If the connection is successful, you should see:
    1. The host fingerprint prompt (first connection only).
-   2. A remote shell prompt on the VM (for example, `root@<your-vm-name>:~#`).
+   2. A remote [shell prompt](./shell.md#shell-prompt) on the VM (for example, `root@<your-vm-name>:~#`).
    3. If you use the `ms-vscode-remote.remote-ssh` exntension in `VS Code`, the status bar should show that you are connected to a remote host.
 7. Otherwise, see [troubleshooting](#troubleshooting).
 
@@ -157,7 +162,7 @@ If you can't connect:
 1. [Go to the VM page](#go-to-the-vm-page).
 2. Verify the VM is in `Running` status.
 3. Verify the VM `IP address` has not changed.
-4. In your local terminal, test the SSH connection in verbose mode:
+4. In your local terminal, test the [`SSH`](./ssh.md) connection in verbose mode:
 
    ```terminal
    ssh -v se-toolkit-vm

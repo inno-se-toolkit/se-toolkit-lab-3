@@ -16,10 +16,6 @@
   - [Navigate directories](#navigate-directories)
 - [Useful commands](#useful-commands)
   - [Check what shell is running](#check-what-shell-is-running)
-- [`Bash`](#bash-1)
-  - [`Bash` syntax basics](#bash-syntax-basics)
-    - [Run a command](#run-a-command)
-    - [Pipe the `stdout`](#pipe-the-stdout)
 
 ## What is shell
 
@@ -28,7 +24,11 @@ An [operating system](./operating-system.md) shell is a computer program that pr
 
 ### Login shell
 
-<!-- TODO -->
+A login shell is started when a user logs in to the system, for example via [SSH](./ssh.md#what-is-ssh).
+It reads login-specific configuration files such as `~/.bash_profile` or `~/.profile`.
+
+> [!NOTE]
+> A `VS Code` terminal is typically a non-login shell and reads `~/.bashrc` instead.
 
 ## Shell variants
 
@@ -45,6 +45,8 @@ An [operating system](./operating-system.md) shell is a computer program that pr
 > [!NOTE]
 > On `Windows`, you must to [open a directory in `WSL`](./vs-code.md#windows-only-open-the-directory-in-wsl) to run `bash`.
 
+See also: [`Bash`](./bash.md).
+
 ### `Git Bash` (`Windows`)
 
 `Git Bash` is a terminal shipped with `Git for Windows`.
@@ -57,7 +59,35 @@ Most `bash` commands in this course work in `zsh` as well.
 
 ## Shell prompt
 
+The shell prompt is the text the shell displays before each command, indicating it is ready to accept input.
+It typically shows the current [user](./linux.md#users), machine name, and [working directory](#current-working-directory).
+
+A typical `bash` prompt looks like:
+
+```terminal
+username@hostname:~/directory$
+```
+
+> [!NOTE]
+> The `$` at the end indicates a regular user.
+> A `#` indicates the [root](./linux.md#the-root-user) (admin) user.
+
 ## Shell command
+
+A shell command is text you type at the [shell prompt](#shell-prompt) and execute by pressing `Enter`.
+It consists of a command name, optionally followed by arguments and flags.
+
+```terminal
+<command> [flags] [arguments]
+```
+
+Example:
+
+```terminal
+ls -a .
+```
+
+Here `ls` is the command, `-a` is a flag (include hidden files), and `.` is the argument (the [current directory](#current-working-directory)).
 
 ## Current working directory
 
@@ -110,25 +140,3 @@ These commands run programs:
     ```terminal
     echo "$SHELL"
     ```
-
-## `Bash`
-
-### `Bash` syntax basics
-
-#### Run a command
-
-```terminal
-<command> <arguments>
-```
-
-Example:
-
-```terminal
-ls .
-```
-
-#### Pipe the `stdout`
-
-```terminal
-<command 1> | <command 2>
-```

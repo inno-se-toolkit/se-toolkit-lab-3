@@ -152,35 +152,3 @@ class Course(BaseItem):
     finish: datetime | None = None
     labs: list[Lab] = []
 
-
-# ===
-
-# This is an ADT - an [algebraic data type](https://en.wikipedia.org/wiki/Algebraic_data_type).
-#
-# It's implemented here as a union of four other types (classes).
-#
-# These classes are decorated with [`@final`](https://docs.python.org/3/library/typing.html#typing.final)
-# to disallow further inheritance.
-#
-# If there was no `@final` at `Step`, we could do like this:
-#
-# ```python
-# class SmallerStep(Step): pass
-# item: Item = SmallerStep(id=0, type="smaller-step", title="...")
-# ```
-#
-# However, since these classes are marked as `@final`, no other classes
-# can inherit from these classes.
-#
-# Therefore, no other variants can be added to the `Item` union.
-#
-# When we later use the `Item` as a variable type, the typechecker will understand
-# that the variable must have a value of one of these four types included into the union.
-#
-# Additional examples of ADTs:
-# https://japiirainen.xyz/posts/tips-for-excelling.html#use-sum-and-product-types-for-everything
-# https://kobzol.github.io/rust/python/2023/05/20/writing-python-like-its-rust.html#algebraic-data-types
-# https://wickstrom.tech/2024-05-23-statically-typed-functional-programming-python-312.html
-# https://discuss.python.org/t/encapsulation-of-variants-in-union-s/99630/2
-
-type Item = Step | Task | Lab | Course
