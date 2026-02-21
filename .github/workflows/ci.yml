@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Run linter
+        run: uv run poe lint
+
+      - name: Run type checker
+        run: uv run poe typecheck
+
+      - name: Run tests with dev server
+        run: |
+          uv run poe dev &
+          sleep 5
+          uv run poe test
