@@ -14,7 +14,8 @@ Fill in each answer below. Replace `___` with the correct value.
 ### GET /items/{item_id}
 
 1. Status code (item found): 200
-2. Status code (item not found): 404
+2. Status code (item not found): 404 
+
 
 ### POST /items
 
