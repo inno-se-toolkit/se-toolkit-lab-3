@@ -14,6 +14,14 @@ CREATE TABLE IF NOT EXISTS items (
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS outcomes (
+    id SERIAL PRIMARY KEY,
+    learner_id INTEGER NOT NULL REFERENCES learners(id),
+    item_id INTEGER NOT NULL REFERENCES items(id),
+    status VARCHAR(50) NOT NULL, -- e.g., 'passed', 'failed', 'in_progress'
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Learners: students using the system
 CREATE TABLE IF NOT EXISTS learners (
     id SERIAL PRIMARY KEY,
