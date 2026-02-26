@@ -22,7 +22,7 @@ TODO questions about what their specific request is
 4. Response type (array or object): array
 
 ### GET /items/{item_id}
- 
+
 1. Status code (item found): 200
 2. Status code (item not found): 404
 
